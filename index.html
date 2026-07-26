@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞士城市旅行指南 Swiss City Guide Schweizer Stadtreiseführer</title>
+<meta name="description" content="选择苏黎世、日内瓦、巴塞尔、伯尔尼、琉森或卢加诺，按旅行风格与同行者定制景点、美食、交通与穿搭建议，附带互动地图 — 中文/English/Deutsch。Pick a Swiss city and get attractions, food, transit and outfit tips tailored to your travel style and companions, with an interactive map. Schweizer Städtereiseführer mit Sehenswürdigkeiten, Essen, Transport und Kleidungstipps, angepasst an Reisestil und Begleitung.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://junpingkoch-web.github.io/swiss-city-guide/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%87%A8%F0%9F%87%AD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- Google AdSense: replace data-ad-client below with your real ca-pub-XXXX ID once your site is approved. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1 class="app-title">
+        <span class="title-icon" aria-hidden="true">🇨🇭</span>
+        <span class="title-text" data-i18n="appTitle">瑞士城市旅行指南</span>
+        <span class="title-icon" aria-hidden="true">🗺️</span>
+      </h1>
+      <div class="header-actions">
+        <button id="helpToggle" class="icon-btn help-btn-3d" type="button" aria-label="Tips" aria-haspopup="dialog">?</button>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="zh" type="button">中文</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="de" type="button">DE</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ad slot: top banner -->
+    <div class="ad-slot">
+      <div class="ad-box" data-i18n="adLabel">广告</div>
+    </div>
+
+    <div class="card toolbar-card">
+      <div class="field">
+        <label for="citySelect" data-i18n="cityLabel">选择城市</label>
+        <select id="citySelect"></select>
+      </div>
+      <div class="selector-row">
+        <div class="field">
+          <label for="styleSelect" data-i18n="styleLabel">旅行风格</label>
+          <select id="styleSelect">
+            <option value="relaxed" data-i18n="styleRelaxed">轻松平衡型</option>
+            <option value="compact" data-i18n="styleCompact">紧凑行军型</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="companionSelect" data-i18n="companionLabel">同行者</label>
+          <select id="companionSelect">
+            <option value="couple" data-i18n="companionCouple">情侣</option>
+            <option value="elders" data-i18n="companionElders">长辈</option>
+            <option value="family" data-i18n="companionFamily">亲子</option>
+          </select>
+        </div>
+      </div>
+      <button id="planBtn" class="btn btn-primary" type="button" data-i18n="planBtn">生成旅行指南</button>
+    </div>
+
+    <p class="status-line" id="statusLine" hidden></p>
+
+    <section id="results" class="results" hidden>
+
+      <div class="card weather-card">
+        <h2 class="section-title" data-i18n="weatherTitle">气候与穿搭建议</h2>
+        <div id="weatherBody" class="weather-body"></div>
+        <ul id="dressList" class="gear-list"></ul>
+        <p class="source-note" data-i18n="weatherSource">数据来源：Open-Meteo</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title" data-i18n="mapTitle">个性化地图</h2>
+        <p class="pace-note" id="cityBlurb"></p>
+        <p class="pace-note" id="paceNote"></p>
+        <div id="cityMap" class="city-map"></div>
+        <div class="map-legend">
+          <span><span aria-hidden="true">🏛️</span> <span data-i18n="legendSight">景点</span></span>
+          <span><span aria-hidden="true">🍽️</span> <span data-i18n="legendFood">美食</span></span>
+          <span><span aria-hidden="true">✈️</span> <span data-i18n="legendAirport">机场</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title" data-i18n="attractionsTitle">必去景点</h2>
+        <ul id="attractionList" class="poi-list"></ul>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title" data-i18n="foodTitle">必吃美食</h2>
+        <ul id="foodList" class="poi-list"></ul>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title" data-i18n="transportTitle">交通建议</h2>
+        <div class="transport-block">
+          <h3 data-i18n="airportLabel">机场到市区</h3>
+          <p id="airportNote"></p>
+        </div>
+        <div class="transport-block">
+          <h3 data-i18n="localTransitLabel">市内交通</h3>
+          <p id="localTransitNote"></p>
+        </div>
+      </div>
+
+      <div class="card poster-card">
+        <h2 class="section-title" data-i18n="posterTitle">旅程插画海报</h2>
+        <div id="posterContainer" class="poster-container"></div>
+        <button id="downloadPosterBtn" class="btn btn-secondary" type="button" data-i18n="downloadPoster">下载海报</button>
+      </div>
+
+    </section>
+
+    <!-- Ad slot: in-content rectangle -->
+    <div class="ad-slot in-content">
+      <div class="ad-box" data-i18n="adLabel">广告</div>
+    </div>
+
+    <footer class="disclaimer">
+      <p data-i18n="disclaimer">天气数据实时抓取自公开接口；景点、美食与交通信息为人工整理，仅供参考，出行前请核实最新营业时间与开放情况。</p>
+    </footer>
+  </div>
+
+  <a
+    class="support-fab"
+    href="https://www.buymeacoffee.com/junping.koch"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-i18n-title="coffeeTooltip"
+    title="喜欢这个工具？请我喝杯咖啡"
+  >
+    <span aria-hidden="true">☕</span>
+    <span data-i18n="coffeeBtn">请我喝杯咖啡</span>
+  </a>
+
+  <div id="helpModal" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="modal-head">
+        <h2 id="helpTitle" data-i18n="helpTitle">使用说明</h2>
+        <button id="helpClose" class="icon-btn" type="button" aria-label="Close">&times;</button>
+      </div>
+      <ul class="tips-list">
+        <li data-i18n="helpTip1">选择城市、旅行风格与同行者，点击"生成旅行指南"。</li>
+        <li data-i18n="helpTip2">景点与美食数量、顺序会根据旅行风格与同行者自动调整。</li>
+        <li data-i18n="helpTip3">地图上的 emoji 标记按类型区分：🏛️景点 🍽️美食 ✈️机场，方便快速视觉定位。</li>
+        <li data-i18n="helpTip4">天气数据为实时接口获取；右上角可随时切换 中文 / EN / DE。</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="data.js"></script>
+  <script src="poster.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
