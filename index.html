@@ -13,6 +13,45 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- Structured data: FAQPage (English defaults; keep in sync with the "en" faq array in script.js) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the weather data actually live?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — climate and outfit tips are based on Open-Meteo's live weather API, queried fresh each time you build a guide." }
+    },
+    {
+      "@type": "Question",
+      "name": "How are the attraction and food recommendations chosen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They come from a hand-curated database built per city, not something generated live. The chosen travel style and companions filter and reorder that content via tag matching." }
+    },
+    {
+      "@type": "Question",
+      "name": "What map data does this use? Do I need a Google account?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The map uses open OpenStreetMap data, rendered locally in your browser via the Leaflet library — no Google Maps API and no account required." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do the number and order of attractions change when I switch travel style or companions?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Relaxed & balanced suggests fewer highlights per day; Compact gives a denser schedule. Elders prioritizes easily-reached spots with fewer stairs, and Family prioritizes kid-friendly places." }
+    },
+    {
+      "@type": "Question",
+      "name": "Could the attraction or restaurant info be outdated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's possible. All info is hand-curated, and opening hours, prices, and availability can change — always verify current details through official channels before you go." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool save my selections or location data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. All filtering and generation happens entirely in your browser; only your language preference is saved locally." }
+    }
+  ]
+}
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -149,8 +188,24 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <section class="explain-section">
+      <h2 data-i18n="explainTitle">How does this guide actually personalize its recommendations?</h2>
+      <p data-i18n="explainP1"></p>
+      <p data-i18n="explainP2"></p>
+      <p data-i18n="explainP3"></p>
+
+      <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList"></div>
+    </section>
+
     <footer class="disclaimer">
       <p data-i18n="disclaimer">天气数据实时抓取自公开接口；景点、美食与交通信息为人工整理，仅供参考，出行前请核实最新营业时间与开放情况。</p>
+      <nav class="footer-links">
+        <a href="https://junpingkoch-web.github.io/about.html">About · 关于</a>
+        <a href="https://junpingkoch-web.github.io/contact.html">Contact · 联系</a>
+        <a href="https://junpingkoch-web.github.io/privacy.html">Privacy · 隐私</a>
+        <a href="https://junpingkoch-web.github.io/terms.html">Terms · 条款</a>
+      </nav>
     </footer>
   </div>
 

@@ -50,7 +50,20 @@
       dress_cash: "现金/银行卡（交通、门票）", dress_maps: "手机（离线地图）",
       dress_umbrella: "雨伞/防水外套", dress_warmLayer: "保暖外套/围巾",
       dress_windbreaker: "防风外套", dress_sunHat: "遮阳帽 + 充足饮水",
-      dress_sunglasses: "太阳镜 + 防晒霜"
+      dress_sunglasses: "太阳镜 + 防晒霜",
+      explainTitle: "这份旅行指南是怎么帮你个性化推荐的？",
+      explainP1: "选择城市后，工具会实时调用 Open-Meteo 天气接口，获取当天的气温、降雨概率、风速，据此动态生成穿搭建议（比如降雨概率高会提示带雨伞、气温低会提示加保暖层）。景点、美食和交通信息则不是实时抓取的，而是我按城市手工整理的数据库，包含地址、简介和分类标签。",
+      explainP2: "「旅行风格」和「同行者」这两个选项会影响景点和美食的筛选与排序规则：选择「轻松平衡型」会建议每天安排较少的重点行程；选择「紧凑行军型」则会给出更密集的日程。同行者是「长辈」时，会优先展示台阶少、更易到达的地点；是「亲子」时，会优先展示适合带小孩的地点。这是基于标签的规则匹配，不是每次都重新生成的AI推荐。",
+      explainP3: "地图使用开源的 OpenStreetMap 地图数据（通过 Leaflet 库渲染），不依赖 Google Maps API Key。所有景点、美食和交通信息为人工整理，具体营业时间、票价和开放状态可能会变化，出行前请务必通过官方渠道核实最新信息。",
+      faqTitle: "常见问题",
+      faq: [
+        { q: "天气数据是实时的吗？", a: "是的，气候与穿搭建议基于 Open-Meteo 的实时天气接口，每次生成指南都会重新查询当天数据。" },
+        { q: "景点和美食推荐是怎么筛选出来的？", a: "这些是我按城市手工整理的数据库，不是每次实时生成的。选择的「旅行风格」和「同行者」会通过标签匹配规则筛选和重新排序这些内容。" },
+        { q: "地图用的是什么数据源？需要绑定 Google 账号吗？", a: "地图基于开源的 OpenStreetMap 数据，通过 Leaflet 库在浏览器本地渲染，不使用 Google Maps API，也不需要任何账号或授权。" },
+        { q: "为什么换了旅行风格或同行者，景点数量和顺序会变？", a: "「轻松平衡型」建议每天安排较少重点、留出休息时间；「紧凑行军型」日程更密集。选择「长辈」会优先展示较易到达、台阶少的地点，选择「亲子」会优先展示适合带小孩的地点。" },
+        { q: "这些景点、餐厅信息会不会过时？", a: "有可能。所有信息为人工整理，营业时间、票价、开放状态都可能随时间变化，出行前请通过官方渠道核实最新信息，不要完全依赖本工具。" },
+        { q: "这个工具会保存我的选择或位置数据吗？", a: "不会。所有筛选和生成都在你的浏览器本地完成，只有语言偏好会保存在本地，不涉及任何定位权限或个人数据上传。" }
+      ]
     },
     en: {
       appTitle: "Swiss City Guide",
@@ -97,7 +110,20 @@
       dress_cash: "Cash/card (transit, tickets)", dress_maps: "Phone (offline maps)",
       dress_umbrella: "Umbrella/rain jacket", dress_warmLayer: "Warm layer/scarf",
       dress_windbreaker: "Windproof jacket", dress_sunHat: "Sun hat + extra water",
-      dress_sunglasses: "Sunglasses + sunscreen"
+      dress_sunglasses: "Sunglasses + sunscreen",
+      explainTitle: "How does this guide actually personalize its recommendations?",
+      explainP1: "Once you pick a city, the tool calls the Open-Meteo weather API live to get the day's temperature, rain probability, and wind, and generates outfit tips dynamically from that (high rain probability suggests an umbrella, low temperature suggests a warm layer). Attractions, food, and transit info aren't fetched live — they come from a hand-curated database built per city, with addresses, short descriptions, and category tags.",
+      explainP2: "\"Travel style\" and \"companions\" drive the filtering and reordering rules for attractions and food: choosing \"Relaxed & balanced\" suggests fewer highlights per day, while \"Compact\" gives a denser schedule. Picking \"Elders\" prioritizes easily-reached spots with fewer stairs, and \"Family with kids\" prioritizes kid-friendly places. This is tag-based rule matching, not a freshly generated AI recommendation each time.",
+      explainP3: "The map uses open OpenStreetMap data, rendered through the Leaflet library — no Google Maps API key involved. All attraction, food, and transit info is hand-curated, and opening hours, prices, and availability can change, so always verify the latest details through official channels before your trip.",
+      faqTitle: "Frequently Asked Questions",
+      faq: [
+        { q: "Is the weather data actually live?", a: "Yes — climate and outfit tips are based on Open-Meteo's live weather API, queried fresh each time you build a guide." },
+        { q: "How are the attraction and food recommendations chosen?", a: "They come from a hand-curated database built per city, not something generated live. Your chosen travel style and companions filter and reorder that content via tag matching." },
+        { q: "What map data does this use? Do I need a Google account?", a: "The map uses open OpenStreetMap data, rendered locally in your browser via the Leaflet library — no Google Maps API and no account or authorization required." },
+        { q: "Why do the number and order of attractions change when I switch travel style or companions?", a: "\"Relaxed & balanced\" suggests fewer highlights per day with room to rest; \"Compact\" gives a denser schedule. \"Elders\" prioritizes easily-reached spots with fewer stairs, and \"Family\" prioritizes kid-friendly places." },
+        { q: "Could the attraction/restaurant info be outdated?", a: "It's possible. All info is hand-curated, and opening hours, prices, and availability can change over time — always verify current details through official channels before you go." },
+        { q: "Does this tool save my selections or location data?", a: "No. All filtering and generation happens entirely in your browser; only your language preference is saved locally. No location permission is used." }
+      ]
     },
     de: {
       appTitle: "Schweizer Stadtreiseführer",
@@ -144,7 +170,20 @@
       dress_cash: "Bargeld/Karte (ÖV, Tickets)", dress_maps: "Handy (Offline-Karten)",
       dress_umbrella: "Regenschirm/Regenjacke", dress_warmLayer: "Warme Schicht/Schal",
       dress_windbreaker: "Winddichte Jacke", dress_sunHat: "Sonnenhut + zusätzliches Wasser",
-      dress_sunglasses: "Sonnenbrille + Sonnencreme"
+      dress_sunglasses: "Sonnenbrille + Sonnencreme",
+      explainTitle: "Wie personalisiert dieser Reiseführer seine Empfehlungen eigentlich?",
+      explainP1: "Sobald du eine Stadt wählst, ruft das Tool live die Open-Meteo-Wetter-API ab, um Temperatur, Regenwahrscheinlichkeit und Wind des Tages zu erhalten, und erstellt daraus dynamisch Kleidungstipps (hohe Regenwahrscheinlichkeit empfiehlt einen Regenschirm, niedrige Temperatur eine warme Schicht). Sehenswürdigkeiten, Essen und Verkehrsinfos werden nicht live abgerufen — sie stammen aus einer pro Stadt handkuratierten Datenbank mit Adressen, Kurzbeschreibungen und Kategorie-Tags.",
+      explainP2: "„Reisestil“ und „Begleitung“ steuern die Filter- und Sortierregeln für Sehenswürdigkeiten und Essen: „Entspannt & ausgewogen“ empfiehlt weniger Highlights pro Tag, „Kompakt“ liefert einen dichteren Zeitplan. Die Wahl „Ältere“ priorisiert leicht erreichbare Orte mit wenigen Stufen, „Familie mit Kindern“ priorisiert familienfreundliche Orte. Das ist regelbasiertes Tag-Matching, keine bei jedem Aufruf neu generierte KI-Empfehlung.",
+      explainP3: "Die Karte nutzt offene OpenStreetMap-Daten, dargestellt über die Leaflet-Bibliothek — keine Google-Maps-API nötig. Alle Angaben zu Sehenswürdigkeiten, Essen und Verkehr sind von Hand zusammengestellt; Öffnungszeiten, Preise und Verfügbarkeit können sich ändern, bitte vor der Reise die aktuellen Angaben über offizielle Kanäle prüfen.",
+      faqTitle: "Häufig gestellte Fragen",
+      faq: [
+        { q: "Sind die Wetterdaten wirklich live?", a: "Ja — Klima- und Kleidungstipps basieren auf der Live-Wetter-API von Open-Meteo, die bei jeder Reiseführer-Erstellung neu abgefragt wird." },
+        { q: "Wie werden die Sehenswürdigkeiten- und Essensempfehlungen ausgewählt?", a: "Sie stammen aus einer pro Stadt handkuratierten Datenbank, nicht aus einer Live-Generierung. Dein gewählter Reisestil und deine Begleitung filtern und sortieren diese Inhalte per Tag-Matching." },
+        { q: "Welche Kartendaten werden verwendet? Brauche ich ein Google-Konto?", a: "Die Karte nutzt offene OpenStreetMap-Daten, lokal in deinem Browser über die Leaflet-Bibliothek dargestellt — keine Google-Maps-API, kein Konto oder Autorisierung nötig." },
+        { q: "Warum ändern sich Anzahl und Reihenfolge der Sehenswürdigkeiten je nach Reisestil oder Begleitung?", a: "„Entspannt & ausgewogen“ empfiehlt weniger Highlights pro Tag mit mehr Zeit zum Ausruhen, „Kompakt“ liefert einen dichteren Zeitplan. „Ältere“ priorisiert leicht erreichbare Orte mit wenigen Stufen, „Familie“ priorisiert familienfreundliche Orte." },
+        { q: "Könnten die Angaben zu Sehenswürdigkeiten/Restaurants veraltet sein?", a: "Möglich. Alle Angaben sind von Hand zusammengestellt, und Öffnungszeiten, Preise und Verfügbarkeit können sich ändern — bitte vor der Reise aktuelle Angaben über offizielle Kanäle prüfen." },
+        { q: "Speichert dieses Tool meine Auswahl oder Standortdaten?", a: "Nein. Die gesamte Filterung und Erstellung läuft vollständig in deinem Browser ab; nur deine Sprachpräferenz wird lokal gespeichert. Es wird keine Standortberechtigung verwendet." }
+      ]
     }
   };
 
@@ -190,6 +229,25 @@
     });
   }
 
+  const faqListEl = document.getElementById("faqList");
+  function renderFAQ() {
+    if (!faqListEl) return;
+    const faq = (i18n[currentLang] && i18n[currentLang].faq) || [];
+    faqListEl.innerHTML = "";
+    faq.forEach((item) => {
+      const details = document.createElement("details");
+      details.className = "faq-item";
+      const summary = document.createElement("summary");
+      summary.innerHTML = '<span class="chev">▶</span> <span>' + item.q + "</span>";
+      const body = document.createElement("div");
+      body.className = "faq-a";
+      body.textContent = item.a;
+      details.appendChild(summary);
+      details.appendChild(body);
+      faqListEl.appendChild(details);
+    });
+  }
+
   function applyLang() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       el.textContent = t(el.getAttribute("data-i18n"));
@@ -197,6 +255,7 @@
     document.querySelectorAll("[data-i18n-title]").forEach((el) => {
       el.setAttribute("title", t(el.getAttribute("data-i18n-title")));
     });
+    renderFAQ();
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
     });
