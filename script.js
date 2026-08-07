@@ -55,6 +55,15 @@
       explainP1: "选择城市后，工具会实时调用 Open-Meteo 天气接口，获取当天的气温、降雨概率、风速，据此动态生成穿搭建议（比如降雨概率高会提示带雨伞、气温低会提示加保暖层）。景点、美食和交通信息则不是实时抓取的，而是我按城市手工整理的数据库，包含地址、简介和分类标签。",
       explainP2: "「旅行风格」和「同行者」这两个选项会影响景点和美食的筛选与排序规则：选择「轻松平衡型」会建议每天安排较少的重点行程；选择「紧凑行军型」则会给出更密集的日程。同行者是「长辈」时，会优先展示台阶少、更易到达的地点；是「亲子」时，会优先展示适合带小孩的地点。这是基于标签的规则匹配，不是每次都重新生成的AI推荐。",
       explainP3: "地图使用开源的 OpenStreetMap 地图数据（通过 Leaflet 库渲染），不依赖 Google Maps API Key。所有景点、美食和交通信息为人工整理，具体营业时间、票价和开放状态可能会变化，出行前请务必通过官方渠道核实最新信息。",
+      compareTitle: "三座城市，怎么选",
+      compareIntro: "拿最常被选的三座城市对比一下——同样是瑞士，体验差异其实很大。",
+      compareHead: ["城市", "最适合谁", "花费水平", "节奏感", "一句话印象"],
+      compareRows: [
+        ["苏黎世", "独自旅行、想体验都市生活", "较高", "快节奏", "班霍夫大街购物、湖畔漫步和苏黎世山远眺，一天塞得满满当当"],
+        ["日内瓦", "情侣、对国际化和历史感兴趣的人", "高（瑞士最贵城市之一）", "中等，散步节奏", "湖畔喷泉、联合国总部，还能跨境去法国境内的萨利夫山看全景"],
+        ["琉森", "带孩子的家庭、长辈同行", "中等", "慢节奏，好走好停", "老城、雪山缆车和湖船一站式搞定，本地没机场但直达火车很方便"]
+      ],
+      compareNote: "这张表只是大方向参考，具体到某一次旅行，最终推荐清单还是会根据你实际选择的「旅行风格」和「同行者」重新排序和筛选——比如同样是苏黎世，带孩子和情侣两人的行程会完全不一样。",
       faqTitle: "常见问题",
       faq: [
         { q: "天气数据是实时的吗？", a: "是的，气候与穿搭建议基于 Open-Meteo 的实时天气接口，每次生成指南都会重新查询当天数据。" },
@@ -115,6 +124,15 @@
       explainP1: "Once you pick a city, the tool calls the Open-Meteo weather API live to get the day's temperature, rain probability, and wind, and generates outfit tips dynamically from that (high rain probability suggests an umbrella, low temperature suggests a warm layer). Attractions, food, and transit info aren't fetched live — they come from a hand-curated database built per city, with addresses, short descriptions, and category tags.",
       explainP2: "\"Travel style\" and \"companions\" drive the filtering and reordering rules for attractions and food: choosing \"Relaxed & balanced\" suggests fewer highlights per day, while \"Compact\" gives a denser schedule. Picking \"Elders\" prioritizes easily-reached spots with fewer stairs, and \"Family with kids\" prioritizes kid-friendly places. This is tag-based rule matching, not a freshly generated AI recommendation each time.",
       explainP3: "The map uses open OpenStreetMap data, rendered through the Leaflet library — no Google Maps API key involved. All attraction, food, and transit info is hand-curated, and opening hours, prices, and availability can change, so always verify the latest details through official channels before your trip.",
+      compareTitle: "Three cities, side by side",
+      compareIntro: "Comparing the three most-picked cities head to head — same country, very different experiences.",
+      compareHead: ["City", "Best for", "Cost level", "Pace", "One-line impression"],
+      compareRows: [
+        ["Zurich", "Solo travel, wanting an urban experience", "Higher", "Fast-paced", "Bahnhofstrasse shopping, a lakeside stroll, and a view from Uetliberg all fit into one day"],
+        ["Geneva", "Couples, anyone into international flair and history", "High (one of Switzerland's priciest cities)", "Moderate, walking pace", "Lakeside fountain, UN headquarters, and a cross-border trip up Mont Salève for the panorama"],
+        ["Lucerne", "Families with kids, traveling with elders", "Moderate", "Slow, easy-stopping pace", "Old town, mountain cable cars, and lake boats all in one place — no local airport, but a direct train makes it easy"]
+      ],
+      compareNote: "This table is just a rough starting point — for any actual trip, the final recommendations are still re-sorted and filtered based on the travel style and companions you actually choose. The same Zurich trip looks completely different for a family with kids versus a couple traveling alone.",
       faqTitle: "Frequently Asked Questions",
       faq: [
         { q: "Is the weather data actually live?", a: "Yes — climate and outfit tips are based on Open-Meteo's live weather API, queried fresh each time you build a guide." },
@@ -175,6 +193,15 @@
       explainP1: "Sobald du eine Stadt wählst, ruft das Tool live die Open-Meteo-Wetter-API ab, um Temperatur, Regenwahrscheinlichkeit und Wind des Tages zu erhalten, und erstellt daraus dynamisch Kleidungstipps (hohe Regenwahrscheinlichkeit empfiehlt einen Regenschirm, niedrige Temperatur eine warme Schicht). Sehenswürdigkeiten, Essen und Verkehrsinfos werden nicht live abgerufen — sie stammen aus einer pro Stadt handkuratierten Datenbank mit Adressen, Kurzbeschreibungen und Kategorie-Tags.",
       explainP2: "„Reisestil“ und „Begleitung“ steuern die Filter- und Sortierregeln für Sehenswürdigkeiten und Essen: „Entspannt & ausgewogen“ empfiehlt weniger Highlights pro Tag, „Kompakt“ liefert einen dichteren Zeitplan. Die Wahl „Ältere“ priorisiert leicht erreichbare Orte mit wenigen Stufen, „Familie mit Kindern“ priorisiert familienfreundliche Orte. Das ist regelbasiertes Tag-Matching, keine bei jedem Aufruf neu generierte KI-Empfehlung.",
       explainP3: "Die Karte nutzt offene OpenStreetMap-Daten, dargestellt über die Leaflet-Bibliothek — keine Google-Maps-API nötig. Alle Angaben zu Sehenswürdigkeiten, Essen und Verkehr sind von Hand zusammengestellt; Öffnungszeiten, Preise und Verfügbarkeit können sich ändern, bitte vor der Reise die aktuellen Angaben über offizielle Kanäle prüfen.",
+      compareTitle: "Drei Städte im Vergleich",
+      compareIntro: "Ein direkter Vergleich der drei meistgewählten Städte — dasselbe Land, sehr unterschiedliche Erlebnisse.",
+      compareHead: ["Stadt", "Geeignet für", "Kostenniveau", "Tempo", "Eindruck in einem Satz"],
+      compareRows: [
+        ["Zürich", "Alleinreisende, urbanes Erlebnis", "Höher", "Schnelles Tempo", "Einkaufsbummel an der Bahnhofstrasse, Spaziergang am See und Aussicht vom Uetliberg passen locker in einen Tag"],
+        ["Genf", "Paare, alle mit Interesse an Internationalität und Geschichte", "Hoch (eine der teuersten Städte der Schweiz)", "Mittel, Spaziergängertempo", "Springbrunnen am See, UNO-Hauptsitz und ein grenzüberschreitender Ausflug auf den Mont Salève fürs Panorama"],
+        ["Luzern", "Familien mit Kindern, Reisen mit älteren Angehörigen", "Mittel", "Langsames, bequemes Tempo", "Altstadt, Bergbahnen und Seeschiffe an einem Ort — kein eigener Flughafen, aber ein Direktzug macht es einfach"]
+      ],
+      compareNote: "Diese Tabelle ist nur ein grober Ausgangspunkt — für eine konkrete Reise werden die endgültigen Empfehlungen weiterhin anhand des gewählten Reisestils und der Begleitung neu sortiert und gefiltert. Dieselbe Zürich-Reise sieht für eine Familie mit Kindern völlig anders aus als für ein Paar allein.",
       faqTitle: "Häufig gestellte Fragen",
       faq: [
         { q: "Sind die Wetterdaten wirklich live?", a: "Ja — Klima- und Kleidungstipps basieren auf der Live-Wetter-API von Open-Meteo, die bei jeder Reiseführer-Erstellung neu abgefragt wird." },
@@ -229,6 +256,18 @@
     });
   }
 
+  const compareHeadEl = document.getElementById("compareTableHead");
+  const compareBodyEl = document.getElementById("compareTableBody");
+  function renderCompareTable() {
+    if (!compareHeadEl || !compareBodyEl) return;
+    const t = i18n[currentLang];
+    compareHeadEl.innerHTML = (t.compareHead || []).map((h) => "<th>" + h + "</th>").join("");
+    compareBodyEl.innerHTML = (t.compareRows || []).map((row) => {
+      const cells = row.map((cell, i) => (i === 0 ? "<th scope=\"row\">" + cell + "</th>" : "<td>" + cell + "</td>")).join("");
+      return "<tr>" + cells + "</tr>";
+    }).join("");
+  }
+
   const faqListEl = document.getElementById("faqList");
   function renderFAQ() {
     if (!faqListEl) return;
@@ -255,6 +294,7 @@
     document.querySelectorAll("[data-i18n-title]").forEach((el) => {
       el.setAttribute("title", t(el.getAttribute("data-i18n-title")));
     });
+    renderCompareTable();
     renderFAQ();
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
