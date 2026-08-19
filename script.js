@@ -214,7 +214,7 @@
     }
   };
 
-  let currentLang = localStorage.getItem(LANG_KEY) || "zh";
+  let currentLang = localStorage.getItem(LANG_KEY) || "de";
 
   function t(key) {
     return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
