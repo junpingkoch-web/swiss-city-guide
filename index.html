@@ -215,23 +215,54 @@
     </div>
 
     <section class="explain-section">
-      <h2 data-i18n="explainTitle">How does this guide actually personalize its recommendations?</h2>
-      <p data-i18n="explainP1"></p>
-      <p data-i18n="explainP2"></p>
-      <p data-i18n="explainP3"></p>
+      <h2 data-i18n="explainTitle">这份旅行指南是怎么帮你个性化推荐的？</h2>
+      <p data-i18n="explainP1">选择城市后，工具会实时调用 Open-Meteo 天气接口，获取当天的气温、降雨概率、风速，据此动态生成穿搭建议（比如降雨概率高会提示带雨伞、气温低会提示加保暖层）。景点、美食和交通信息则不是实时抓取的，而是我按城市手工整理的数据库，包含地址、简介和分类标签。</p>
+      <p data-i18n="explainP2">「旅行风格」和「同行者」这两个选项会影响景点和美食的筛选与排序规则：选择「轻松平衡型」会建议每天安排较少的重点行程；选择「紧凑行军型」则会给出更密集的日程。同行者是「长辈」时，会优先展示台阶少、更易到达的地点；是「亲子」时，会优先展示适合带小孩的地点。这是基于标签的规则匹配，不是每次都重新生成的AI推荐。</p>
+      <p data-i18n="explainP3">地图使用开源的 OpenStreetMap 地图数据（通过 Leaflet 库渲染），不依赖 Google Maps API Key。所有景点、美食和交通信息为人工整理，具体营业时间、票价和开放状态可能会变化，出行前请务必通过官方渠道核实最新信息。</p>
 
-      <h2 data-i18n="compareTitle">Three cities, side by side</h2>
-      <p data-i18n="compareIntro"></p>
+      <h2 data-i18n="compareTitle">三座城市，怎么选</h2>
+      <p data-i18n="compareIntro">拿最常被选的三座城市对比一下——同样是瑞士，体验差异其实很大。</p>
       <div class="compare-table-wrap">
         <table class="compare-table">
-          <thead><tr id="compareTableHead"></tr></thead>
-          <tbody id="compareTableBody"></tbody>
+          <thead><tr id="compareTableHead">
+            <th>城市</th><th>最适合谁</th><th>花费水平</th><th>节奏感</th><th>一句话印象</th>
+          </tr></thead>
+          <tbody id="compareTableBody">
+            <tr><td>苏黎世</td><td>独自旅行、想体验都市生活</td><td>较高</td><td>快节奏</td><td>班霍夫大街购物、湖畔漫步和苏黎世山远眺，一天塞得满满当当</td></tr>
+            <tr><td>日内瓦</td><td>情侣、对国际化和历史感兴趣的人</td><td>高（瑞士最贵城市之一）</td><td>中等，散步节奏</td><td>湖畔喷泉、联合国总部，还能跨境去法国境内的萨利夫山看全景</td></tr>
+            <tr><td>琉森</td><td>带孩子的家庭、长辈同行</td><td>中等</td><td>慢节奏，好走好停</td><td>老城、雪山缆车和湖船一站式搞定，本地没机场但直达火车很方便</td></tr>
+          </tbody>
         </table>
       </div>
-      <p data-i18n="compareNote"></p>
+      <p data-i18n="compareNote">这张表只是大方向参考，具体到某一次旅行，最终推荐清单还是会根据你实际选择的「旅行风格」和「同行者」重新排序和筛选——比如同样是苏黎世，带孩子和情侣两人的行程会完全不一样。</p>
 
-      <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
-      <div class="faq-list" id="faqList"></div>
+      <h2 data-i18n="faqTitle">常见问题</h2>
+      <div class="faq-list" id="faqList">
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>天气数据是实时的吗？</span></summary>
+          <div class="faq-a">是的，气候与穿搭建议基于 Open-Meteo 的实时天气接口，每次生成指南都会重新查询当天数据。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>景点和美食推荐是怎么筛选出来的？</span></summary>
+          <div class="faq-a">这些是我按城市手工整理的数据库，不是每次实时生成的。选择的「旅行风格」和「同行者」会通过标签匹配规则筛选和重新排序这些内容。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>地图用的是什么数据源？需要绑定 Google 账号吗？</span></summary>
+          <div class="faq-a">地图基于开源的 OpenStreetMap 数据，通过 Leaflet 库在浏览器本地渲染，不使用 Google Maps API，也不需要任何账号或授权。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>为什么换了旅行风格或同行者，景点数量和顺序会变？</span></summary>
+          <div class="faq-a">「轻松平衡型」建议每天安排较少重点、留出休息时间；「紧凑行军型」日程更密集。选择「长辈」会优先展示较易到达、台阶少的地点，选择「亲子」会优先展示适合带小孩的地点。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>这些景点、餐厅信息会不会过时？</span></summary>
+          <div class="faq-a">有可能。所有信息为人工整理，营业时间、票价、开放状态都可能随时间变化，出行前请通过官方渠道核实最新信息，不要完全依赖本工具。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>这个工具会保存我的选择或位置数据吗？</span></summary>
+          <div class="faq-a">不会。所有筛选和生成都在你的浏览器本地完成，只有语言偏好会保存在本地，不涉及任何定位权限或个人数据上传。</div>
+        </details>
+      </div>
     </section>
 
     <footer class="disclaimer">
