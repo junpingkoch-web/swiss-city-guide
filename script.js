@@ -567,6 +567,7 @@
 
       results.hidden = false;
       statusLine.hidden = true;
+      if (typeof gtag === "function") gtag("event", "tool_result_generated", { tool_name: "swiss-city-guide" });
     } catch (err) {
       console.error("planRoute error:", err);
       statusLine.textContent = t("planning");
