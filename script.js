@@ -214,6 +214,15 @@
     }
   };
 
+  // A hung public API would otherwise leave planRoute() stuck forever on a
+  // fetch that never resolves or rejects (seen live on a sibling tool's API).
+  const FETCH_TIMEOUT_MS = 10000;
+  function fetchWithTimeout(url, ms) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms || FETCH_TIMEOUT_MS);
+    return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
+  }
+
   let currentLang = localStorage.getItem(LANG_KEY) || "de";
 
   function t(key) {
@@ -297,7 +306,9 @@
     renderCompareTable();
     renderFAQ();
     document.querySelectorAll(".lang-btn").forEach((btn) => {
-      btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
+      const isActive = btn.getAttribute("data-lang") === currentLang;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
     document.documentElement.lang = currentLang;
     const selectedCity = citySelect.value;
@@ -314,16 +325,50 @@
     });
   });
 
-  helpToggle.addEventListener("click", () => { helpModal.hidden = false; });
-  helpClose.addEventListener("click", () => { helpModal.hidden = true; });
-  helpModal.addEventListener("click", (e) => { if (e.target === helpModal) helpModal.hidden = true; });
+  const helpModalBox = helpModal.querySelector(".modal");
+
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    ));
+  }
+
+  function openHelpModal() {
+    helpModal.hidden = false;
+    helpClose.focus();
+  }
+
+  function closeHelpModal() {
+    helpModal.hidden = true;
+    helpToggle.focus();
+  }
+
+  helpToggle.addEventListener("click", openHelpModal);
+  helpClose.addEventListener("click", closeHelpModal);
+  helpModal.addEventListener("click", (e) => { if (e.target === helpModal) closeHelpModal(); });
+  document.addEventListener("keydown", (e) => {
+    if (helpModal.hidden) return;
+    if (e.key === "Escape") { closeHelpModal(); return; }
+    if (e.key !== "Tab") return;
+    const focusable = getFocusable(helpModalBox);
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   // ---------- Weather ----------
   async function fetchWeather(lat, lon) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
       `&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max` +
       `&timezone=auto&forecast_days=1`;
-    const res = await fetch(url);
+    const res = await fetchWithTimeout(url);
     if (!res.ok) throw new Error("weather fetch failed");
     return res.json();
   }
@@ -567,6 +612,7 @@
 
       results.hidden = false;
       statusLine.hidden = true;
+      results.focus();
       if (typeof gtag === "function") gtag("event", "tool_result_generated", { tool_name: "swiss-city-guide" });
     } catch (err) {
       console.error("planRoute error:", err);

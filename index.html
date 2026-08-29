@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260830">
 <!-- Structured data: FAQPage (English defaults; keep in sync with the "en" faq array in script.js) -->
 <script type="application/ld+json">
 {
@@ -119,9 +119,9 @@
       <div class="header-actions">
         <button id="helpToggle" class="icon-btn help-btn-3d" type="button" aria-label="Tips" aria-haspopup="dialog">?</button>
         <div class="lang-switch" role="group" aria-label="Language">
-          <button class="lang-btn" data-lang="zh" type="button">中文</button>
-          <button class="lang-btn" data-lang="en" type="button">EN</button>
-          <button class="lang-btn active" data-lang="de" type="button">DE</button>
+          <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">中文</button>
+          <button class="lang-btn" data-lang="en" type="button" aria-pressed="false">EN</button>
+          <button class="lang-btn active" data-lang="de" type="button" aria-pressed="true">DE</button>
         </div>
       </div>
     </header>
@@ -156,9 +156,9 @@
       <button id="planBtn" class="btn btn-primary" type="button" data-i18n="planBtn">生成旅行指南</button>
     </div>
 
-    <p class="status-line" id="statusLine" hidden></p>
+    <p class="status-line" id="statusLine" hidden aria-live="polite" aria-atomic="true"></p>
 
-    <section id="results" class="results" hidden>
+    <section id="results" class="results" hidden tabindex="-1">
 
       <div class="card weather-card">
         <h2 class="section-title" data-i18n="weatherTitle">气候与穿搭建议</h2>
@@ -307,6 +307,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="data.js"></script>
   <script src="poster.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260830"></script>
 </body>
 </html>
