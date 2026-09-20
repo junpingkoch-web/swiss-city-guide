@@ -223,7 +223,7 @@
     return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
   }
 
-  let currentLang = localStorage.getItem(LANG_KEY) || "de";
+  let currentLang = localStorage.getItem(LANG_KEY) || (function () { var n = (navigator.language || "en").toLowerCase(); return n.indexOf("zh") === 0 ? "zh" : n.indexOf("de") === 0 ? "de" : "en"; })();
 
   function t(key) {
     return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
